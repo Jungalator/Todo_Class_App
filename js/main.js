@@ -1,40 +1,7 @@
 "use strict";
-
-class LocaleStorage {
-  #keyName;
-  constructor(keyName) {
-    this.#keyName = keyName;
-  }
-  GetItem() {
-    const items = localStorage.getItem(this.#keyName);
-    return items ? JSON.parse(items) : [];
-  }
-
-  SetItem(itemsList) {
-    localStorage.setItem(this.#keyName, JSON.stringify(itemsList));
-  }
-}
-
-class DOM {
-  query(selector) {
-    return document.querySelector(selector);
-  }
-  create(type, textContent, ...classNames) {
-    const item = document.createElement(type);
-    item.textContent = textContent;
-    //   item.classList.add(...classNames);
-    //или можно еще написать так
-    classNames.length && (item.className = classNames.join(" "));
-    return item;
-  }
-}
-
-class Item {
-  constructor(id, text) {
-    this.id = id;
-    this.text = text;
-  }
-}
+import { LocaleStorage } from "./halpers.js/localeStorage_Class.js";
+import { DOM } from "./halpers.js/dom_class.js";
+import { Item } from "./halpers.js/item_class.js";
 
 class TodoItem extends Item {
   constructor({ id, text, completed = false }) {
